@@ -15,6 +15,12 @@ class TaskStatus(StrEnum):
     failed = "failed"
 
 
+class TaskResult(BaseModel):
+    summary: str
+    files_changed: list[str] = []
+    error_message: str | None = None
+
+
 class CodingTask(BaseModel):
     id: str
     prompt: str
@@ -22,3 +28,4 @@ class CodingTask(BaseModel):
     language: str = "python"
     status: TaskStatus = TaskStatus.pending
     created_at: datetime = Field(default_factory=datetime.now)
+    result: TaskResult | None = None

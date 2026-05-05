@@ -1,8 +1,12 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, HTTPException, Query, status
 
-from zzttvmtp.api.v1.schemas import TaskCreateRequest, TaskResponse
+from zzttvmtp.api.v1.schemas import (
+    TaskCreateRequest,
+    TaskDetailResponse,
+    TaskResponse,
+)
 from zzttvmtp.models.coding_task import TaskStatus
 from zzttvmtp.services.task_service import TaskService
 
@@ -29,3 +33,27 @@ async def list_tasks(
 ) -> list[TaskResponse]:
     tasks = task_service.list_tasks(status=status, offset=offset, limit=limit)
     return [TaskResponse(id=t.id, status=t.status) for t in tasks]
+
+
+@tasks_router.get("/{task_id}", response_model=TaskDetailResponse)
+async def get_task(task_id: str) -> TaskDetailResponse:
+    task = task_service.get_task(task_id)
+    if task is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+    return TaskDetailResponse(
+        id=task.id,
+        prompt=task.prompt,
+        context_files=task.context_files,
+        language=task.language,
+        status=task.status,
+        created_at=task.created_at,
+        result=task.result,
+    )
+
+
+@tasks_router.delete("/{task_id}", status_code=204)
+async def delete_task(task_id: str) -> None:
+    deleted = task_service.delete_task(task_id)
+    if not deleted:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+    return None
