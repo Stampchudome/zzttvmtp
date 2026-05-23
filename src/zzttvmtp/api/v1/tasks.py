@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, Query
 
+from zzttvmtp.api.errors import NotFoundError
 from zzttvmtp.api.v1.schemas import (
     TaskCreateRequest,
     TaskDetailResponse,
@@ -39,7 +40,7 @@ async def list_tasks(
 async def get_task(task_id: str) -> TaskDetailResponse:
     task = task_service.get_task(task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise NotFoundError("Task", task_id)
     return TaskDetailResponse(
         id=task.id,
         prompt=task.prompt,
@@ -55,5 +56,5 @@ async def get_task(task_id: str) -> TaskDetailResponse:
 async def delete_task(task_id: str) -> None:
     deleted = task_service.delete_task(task_id)
     if not deleted:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise NotFoundError("Task", task_id)
     return None

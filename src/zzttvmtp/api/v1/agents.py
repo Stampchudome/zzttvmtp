@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter
 
+from zzttvmtp.api.errors import NotFoundError
 from zzttvmtp.api.v1.schemas import (
     AgentConfigRequest,
     AgentDetailResponse,
@@ -28,9 +29,7 @@ async def list_agents() -> list[AgentListResponse]:
 async def get_agent(agent_id: str) -> AgentDetailResponse:
     config = agent_service.get_agent(agent_id)
     if config is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Agent not found"
-        )
+        raise NotFoundError("Agent", agent_id)
     return AgentDetailResponse(
         id=agent_id,
         model=config.model,
