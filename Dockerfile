@@ -15,4 +15,4 @@ WORKDIR /app
 ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8000
-CMD ["uvicorn", "zzttvmtp.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "code_assistant_api.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Query
 
-from zzttvmtp.api.errors import NotFoundError
-from zzttvmtp.api.v1.schemas import (
+from code_assistant_api.api.errors import NotFoundError
+from code_assistant_api.api.v1.schemas import (
     TaskCreateRequest,
     TaskDetailResponse,
     TaskResponse,
 )
-from zzttvmtp.models.coding_task import TaskStatus
-from zzttvmtp.services.task_service import TaskService
+from code_assistant_api.models.coding_task import TaskStatus
+from code_assistant_api.services.task_service import TaskService
 
 tasks_router = APIRouter(prefix="/tasks", tags=["tasks"])
 

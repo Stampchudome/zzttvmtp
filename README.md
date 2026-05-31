@@ -1,4 +1,4 @@
-# zzttvmtp
+# code-assistant-api
 
 An AI coding agent exposed over HTTP — submit coding tasks and receive planned solutions and generated code.
 
@@ -17,7 +17,7 @@ An AI coding agent exposed over HTTP — submit coding tasks and receive planned
 uv sync
 
 # Run the server
-uv run uvicorn zzttvmtp.main:app --reload
+uv run uvicorn code_assistant_api.main:app --reload
 ```
 
 Open http://localhost:8000/docs for interactive API documentation.

@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from starlette.middleware.cors import CORSMiddleware
 
-from zzttvmtp.api.errors import AppError, app_error_handler
-from zzttvmtp.api.middleware import RequestTimingMiddleware
-from zzttvmtp.api.router import api_router
+from code_assistant_api.api.errors import AppError, app_error_handler
+from code_assistant_api.api.middleware import RequestTimingMiddleware
+from code_assistant_api.api.router import api_router
 
 
 def create_app() -> FastAPI:
     app = FastAPI(
-        title="zzttvmtp",
+        title="code-assistant-api",
         description="AI coding agent over HTTP",
         version="0.1.0",
     )

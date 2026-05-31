@@ -9,7 +9,7 @@ from httpx import ASGITransport, AsyncClient
 # Allow pydantic-ai to initialize without real credentials in tests
 os.environ.setdefault("OPENAI_API_KEY", "sk-test-fake-key")
 
-from zzttvmtp.main import app  # noqa: E402
+from code_assistant_api.main import app  # noqa: E402
 
 
 @pytest.fixture

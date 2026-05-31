@@ -3,7 +3,7 @@ from __future__ import annotations
 from pydantic import BaseModel
 from pydantic_ai import Agent, ModelSettings
 
-from zzttvmtp.models.agent import CodingAgentConfig
+from code_assistant_api.models.agent import CodingAgentConfig
 
 
 class CodeOutput(BaseModel):

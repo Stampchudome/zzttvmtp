@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from zzttvmtp.models.coding_task import CodingTask, TaskStatus
+from code_assistant_api.models.coding_task import CodingTask, TaskStatus
 
 
 class TaskService:

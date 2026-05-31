@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from zzttvmtp.models.agent import CodingAgentConfig
-from zzttvmtp.services.coding_agent import CodingAgent
+from code_assistant_api.models.agent import CodingAgentConfig
+from code_assistant_api.services.coding_agent import CodingAgent
 
 
 class AgentService:

@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from zzttvmtp.api.errors import NotFoundError
-from zzttvmtp.api.v1.schemas import (
+from code_assistant_api.api.errors import NotFoundError
+from code_assistant_api.api.v1.schemas import (
     AgentConfigRequest,
     AgentDetailResponse,
     AgentListResponse,
 )
-from zzttvmtp.models.agent import CodingAgentConfig
-from zzttvmtp.services.agent_service import AgentService
+from code_assistant_api.models.agent import CodingAgentConfig
+from code_assistant_api.services.agent_service import AgentService
 
 agents_router = APIRouter(prefix="/agents", tags=["agents"])
 

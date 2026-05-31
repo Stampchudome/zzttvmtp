@@ -4,7 +4,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
-from zzttvmtp.models.coding_task import TaskResult, TaskStatus
+from code_assistant_api.models.coding_task import TaskResult, TaskStatus
 
 
 class TaskCreateRequest(BaseModel):
